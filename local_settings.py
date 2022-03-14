@@ -1,12 +1,12 @@
 from os import environ
 
 # Configuration for Twitter API
-ENABLE_TWITTER_SOURCES = True # Fetch twitter statuses as source
-ENABLE_TWITTER_POSTING = True # Tweet resulting status?
-MY_CONSUMER_KEY = 'Introduce consumer key'   #Your Twitter API Consumer Key
-MY_CONSUMER_SECRET = 'Introduce consumer secret key' #Your Consumer Secret Key
-MY_ACCESS_TOKEN_KEY = 'Introduce API access token key'   #Your Twitter API Access Token Key
-MY_ACCESS_TOKEN_SECRET = 'Introduce API access token secret key'   #Your Access Token Secret
+ENABLE_TWITTER_SOURCES = True   # Fetch twitter statuses as source
+ENABLE_TWITTER_POSTING = True   # Tweet resulting status?
+MY_CONSUMER_KEY = 'Introduce consumer key'                         # Your Twitter API Consumer Key
+MY_CONSUMER_SECRET = 'Introduce consumer secret key'               # Your Consumer Secret Key
+MY_ACCESS_TOKEN_KEY = 'Introduce API access token key'             # Your Twitter API Access Token Key
+MY_ACCESS_TOKEN_SECRET = 'Introduce API access token secret key'   # Your Access Token Secret
 
 # Sources (Twitter or a local text file)
 TWITTER_SOURCE_ACCOUNTS = [" "]  # A list of comma-separated, quote-enclosed Twitter handles of account that you'll generate tweets based on. It should look like ["account1", "account2"]. If you want just one account, no comma needed.
