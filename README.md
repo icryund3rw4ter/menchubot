@@ -14,7 +14,6 @@ I've made this project to be ran on Python 3. Didn't work for me with previous v
 3. Install the libraries python-twitter, Mastodon.py and beautifulsoup4. You can do this by doing:
 ```
 pip3 install python-twitter
-pip3 install Mastodon.py
 pip3 install beautifulsoup4
 ```
 5. Sign into https://dev.twitter.com/apps with the same login and create an application. Make sure that your application has read and write permissions to make POST requests. This is done by Going to 'User authentication settings' and choosing OAuth 1.0.
