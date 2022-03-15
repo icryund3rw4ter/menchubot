@@ -5,15 +5,9 @@ import twitter
 import markov
 from bs4 import BeautifulSoup
 
-try:
-    # Python 3
-    from html.entities import name2codepoint as n2c
-    from urllib.request import urlopen
-except ImportError:
-    # Python 2
-    from htmlentitydefs import name2codepoint as n2c
-    from urllib2 import urlopen
-    chr = unichr
+# Python 3
+from html.entities import name2codepoint as n2c
+from urllib.request import urlopen
 from local_settings import *
 
 
@@ -95,9 +89,8 @@ def grab_toots(api, account_id=None,max_id=None):
         return source_toots, max_id
 
 if __name__ == "__main__":
-    i = 1
-    order = ORDER
-    guess = 0
+    i, order, guess = 1, ORDER, 0
+    
     if (i != 1):
         print(" ")
     else:
@@ -115,8 +108,7 @@ if __name__ == "__main__":
                 user = handle
                 handle_stats = api.GetUser(screen_name=user)
                 status_count = handle_stats.statuses_count
-                max_id = None
-                my_range = min(17, int((status_count/200) + 1))
+                max_id, my_range = None, min(17,  int((status_count/200) + 1))
                 for x in range(1, my_range):
                     twitter_tweets_iter, max_id = grab_tweets(api, max_id)
                     twitter_tweets += twitter_tweets_iter
@@ -165,7 +157,7 @@ if __name__ == "__main__":
                     continue
                 else:
                     print("TOO SIMILAR: " + ebook_status)
-                    sys.exit()
+                    os.execv(__file__, [__file__] + sys.argv)
 
             if not DEBUG:
                 if ENABLE_TWITTER_POSTING:
