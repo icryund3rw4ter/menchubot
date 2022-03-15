@@ -89,35 +89,34 @@ def grab_toots(api, account_id=None,max_id=None):
         return source_toots, max_id
 
 if __name__ == "__main__":
-    i, order, guess = 1, ORDER, 0
-    
-    if (i != 1):
-        print(" ")
-    else:
-        api = connect()         
-        source_statuses = []
-        if STATIC_TEST:
-            file = TEST_SOURCE
-            print(">>> Generating from {0}".format(file))
-            string_list = open(file).readlines()
-            for item in string_list:
-                source_statuses += item.split(",")
-        if ENABLE_TWITTER_SOURCES and TWITTER_SOURCE_ACCOUNTS and len(TWITTER_SOURCE_ACCOUNTS[0]) > 0:
-            twitter_tweets = []
-            for handle in TWITTER_SOURCE_ACCOUNTS:
-                user = handle
-                handle_stats = api.GetUser(screen_name=user)
-                status_count = handle_stats.statuses_count
-                max_id, my_range = None, min(17,  int((status_count/200) + 1))
-                for x in range(1, my_range):
-                    twitter_tweets_iter, max_id = grab_tweets(api, max_id)
-                    twitter_tweets += twitter_tweets_iter
-                print("{0} tweets found in {1}".format(len(twitter_tweets), handle))
-                if not twitter_tweets:
-                    print("Error fetching tweets from Twitter. Aborting.")
-                    sys.exit()
-                else:
-                    source_statuses += twitter_tweets
+    order, guess = ORDER, 0
+
+    api = connect()         
+    source_statuses = []
+    if STATIC_TEST:
+        file = TEST_SOURCE
+        print(">>> Generating from {0}".format(file))
+        string_list = open(file).readlines()
+        for item in string_list:
+            source_statuses += item.split(",")
+    if ENABLE_TWITTER_SOURCES and TWITTER_SOURCE_ACCOUNTS and len(TWITTER_SOURCE_ACCOUNTS[0]) > 0:
+        twitter_tweets = []
+        for handle in TWITTER_SOURCE_ACCOUNTS:
+            user = handle
+            handle_stats = api.GetUser(screen_name=user)
+            status_count = handle_stats.statuses_count
+            max_id, my_range = None, min(17,  int((status_count/200) + 1))
+            for x in range(1, my_range):
+                twitter_tweets_iter, max_id = grab_tweets(api, max_id)
+                twitter_tweets += twitter_tweets_iter
+                
+            #print("{0} tweets found in {1}".format(len(twitter_tweets), handle))
+            if not twitter_tweets:
+                print("Error fetching tweets from Twitter. Aborting.")
+                sys.exit()
+            else:   
+                source_statuses += twitter_tweets
+                
         if len(source_statuses) == 0:
             print("No statuses found!")
             sys.exit()
