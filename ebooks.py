@@ -165,5 +165,8 @@ if __name__ == "__main__":
 
         elif not ebook_status:
             print("Status is empty, sorry.")
+            os.execv(__file__, [__file__] + sys.argv)
+        
         else:
             print("TOO LONG: " + ebook_status)
+            os.execv(__file__, [__file__] + sys.argv)
