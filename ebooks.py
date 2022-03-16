@@ -1,4 +1,5 @@
 import random
+import os
 import re
 import sys
 import twitter
@@ -110,16 +111,17 @@ if __name__ == "__main__":
                 twitter_tweets_iter, max_id = grab_tweets(api, max_id)
                 twitter_tweets += twitter_tweets_iter
                 
-            #print("{0} tweets found in {1}".format(len(twitter_tweets), handle))
+            print("{0} tweets found in {1}".format(len(twitter_tweets), handle))
             if not twitter_tweets:
                 print("Error fetching tweets from Twitter. Aborting.")
-                sys.exit()
-            else:   
+                os.execv(__file__, [__file__] + sys.argv) # Restarting
+            else:
                 source_statuses += twitter_tweets
                 
         if len(source_statuses) == 0:
             print("No statuses found!")
-            sys.exit()
+            os.execv(__file__, [__file__] + sys.argv)
+        
         mine = markov.MarkovChainer(order)
         for status in source_statuses:
             if not re.search('([\.\!\?\"\']$)', status):
