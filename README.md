@@ -67,7 +67,7 @@ crontab -e
 ```
 Then, we go to the last line of the file and paste the code below. You should replace '/home/pi/Documents/menchubot' with the route of the cloned repo.
 ```
-*/30 * * * * cd /home/pi/Documents/menchubot && python3 ebooks.py  >/dev/null 2>&1
+*/30 * * * * python3 /home/pi/Documents/menchubot/ebooks.py  >/dev/null 2>&1
 ```
 
 If you want it to run every 45 minutes, you can change the 30 for 45. You can also check other options (like make it run the first hour of the day, which days, etc.) by looking at the manual in https://linux.die.net/man/5/crontab.
