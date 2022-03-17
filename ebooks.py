@@ -76,20 +76,6 @@ def grab_tweets(api, max_id=None):
         pass
     return source_tweets, max_id
 
-def grab_toots(api, account_id=None,max_id=None):
-    if account_id:
-        source_toots = []
-        user_toots = api.account_statuses(account_id)
-        max_id = user_toots[len(user_toots)-1]['id']-1
-        for toot in user_toots:
-            if toot['in_reply_to_id'] or toot['reblog']:
-                pass #skip this one
-            else:
-                toot['content'] = filter_status(toot['content'])
-                if len(toot['content']) != 0:
-                    source_toots.append(toot['content'])
-        return source_toots, max_id
-
 if __name__ == "__main__":
     order, guess = ORDER, 0
 
